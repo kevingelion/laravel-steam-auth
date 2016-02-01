@@ -52,6 +52,15 @@ class SteamInfo
         return "STEAM_0:$authserver:$authid";
     }
 
+    public function getSteamID3()
+    {
+      $authserver = bcsub($this->steamID64, '76561197960265728') & 1;
+      $authid = (bcsub($this->steamID64, '76561197960265728') - $authserver) / 2;
+      $authid = 2 * intval($authid) + intval($authserver);
+
+      return "U:1:$authid";
+    }
+
     /**
      * @return mixed
      */
